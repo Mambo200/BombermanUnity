@@ -69,7 +69,32 @@ public abstract class ABomb : MonoBehaviour
         BombCollider.isTrigger = false;
     }
 
-    public abstract void Explode();
+    public virtual void Explode()
+    {
+        RaycastHit[] hits = ExplodeHit(true);
+
+        foreach (RaycastHit hit in hits)
+        {
+            Blocks b = hit.collider.gameObject.GetComponent<Blocks>();
+            if (b == null)
+            {
+                // check if hit was player
+                MyPlayerController player = hit.collider.gameObject.GetComponent<MyPlayerController>();
+                if (hit.collider.gameObject.GetComponent<MyPlayerController>() != null)
+                {
+                    // player got hit
+                    player.GetDamage(1);
+                }
+            }
+            else
+            {
+                DamageBlock(b);
+            }
+
+        }
+
+        Destroy(this.gameObject);
+    }
 
     protected RaycastHit[] ExplodeHit(bool _logic = true)
     {
@@ -184,7 +209,7 @@ public abstract class ABomb : MonoBehaviour
         List<T> tR = new List<T>();
         foreach (T[] item in _values)
         {
-        tR.AddRange(item);
+            tR.AddRange(item);
         }
 
         return tR.ToArray();
@@ -202,11 +227,11 @@ public abstract class ABomb : MonoBehaviour
     {
         foreach (RaycastHit hit in _hits)
         {
-            if(hit.collider.gameObject.tag == "Block") { }
+            if (hit.collider.gameObject.tag == "Block") { }
         }
     }
     protected virtual void DamageBlock(Blocks _block)
     {
-
+        _block.BlockHit(m_BombData.ExplosionDamage);
     }
 }

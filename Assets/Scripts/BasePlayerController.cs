@@ -23,6 +23,6 @@ public abstract class BasePlayerController : MonoBehaviour
 
     public virtual void GetDamage(int _damage)
     {
-        
+        Debug.Log("Player dead");
     }
 }
