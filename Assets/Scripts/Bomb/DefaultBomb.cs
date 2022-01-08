@@ -17,26 +17,26 @@ public class DefaultBomb : ABomb
 
 
 
-    public override void Explode()
-    {
-        Debug.Log("Exploded");
-
-        RaycastHit[] hit = ExplodeHit(true);
-
-        string hits = "";
-        foreach (RaycastHit item in hit)
-        {
-            hits += item.collider.gameObject.name + " / ";
-        }
-        if (hits.Length > 0)
-            hits = hits.Remove(hits.Length - 3);
-        else
-            hits = "No hits";
-
-        Debug.Log("Hits: " + hits);
-        // Grid scale x ==> left and right
-        // Grid scale y ==> up and down
-        #region Visualization
+    //public override void Explode()
+    //{
+    //    Debug.Log("Exploded");
+    //
+    //    RaycastHit[] hit = ExplodeHit(true);
+    //
+    //    string hits = "";
+    //    foreach (RaycastHit item in hit)
+    //    {
+    //        hits += item.collider.gameObject.name + " / ";
+    //    }
+    //    if (hits.Length > 0)
+    //        hits = hits.Remove(hits.Length - 3);
+    //    else
+    //        hits = "No hits";
+    //
+    //    Debug.Log("Hits: " + hits);
+    //    // Grid scale x ==> left and right
+    //    // Grid scale y ==> up and down
+    //    #region Visualization
         ////up
         //for (int i = 0; i < BombData.ExplosionRadiusUp; i++)
         //{
@@ -85,8 +85,8 @@ public class DefaultBomb : ABomb
         //        );
         //    go.transform.localScale = FieldManager.Get.Grid.cellSize;
         //}
-        #endregion
-
-
-    }
+    //    #endregion
+    //
+    //
+    //}
 }
